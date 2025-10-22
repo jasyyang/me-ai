@@ -1,9 +1,12 @@
-from me_ai.config import ApplicationEnvType
-from me_ai.config.base import ApplicationSettings
+from typing import Annotated
+
+from pydantic import Field
+
+from me_ai.config.base import ApplicationEnvType, ApplicationSettings
 
 
 class DevelopmentApplicationSettings(ApplicationSettings):
     """ApplicationSettings for development environment."""
 
-    def app_env(self) -> ApplicationEnvType:
-        return ApplicationEnvType.DEV
+    app_env: Annotated[ApplicationEnvType, Field(alias="APP_ENV")] = ApplicationEnvType.DEV
+    """The environment type of the application's runtime."""

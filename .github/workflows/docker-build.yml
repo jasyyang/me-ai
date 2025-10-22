@@ -1,0 +1,20 @@
+name: Docker Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build dev target
+        run: docker build --target development -t me-ai:ci
+      - name: Smoke test dev image
+        run: |
+          docker run --rm me-ai:ci python -c "import me_ai"
+          docker run --rm me-ai:ci "import uvicorn"

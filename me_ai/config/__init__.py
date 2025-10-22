@@ -2,6 +2,10 @@ import os
 from collections.abc import Callable
 from functools import lru_cache
 
+from click import Path
+from dotenv import load_dotenv
+from dotenv.main import StrPath
+
 from me_ai.config.base import ApplicationEnvType, ApplicationSettings
 from me_ai.config.development import DevelopmentApplicationSettings
 from me_ai.config.paths import REPO_ENV_PATH
@@ -28,15 +32,13 @@ class InvalidApplicationEnvironmentError(Exception):
 
 
 def load_dotenv_file(
-    dotenv_path: str | os.PathLike[str],
+    dotenv_path: str | os.PathLike[str] | None,
     encoding: str | None = "utf-8",
 ) -> bool:
     """Load a .env file into the environment variables, returning boolean indicating success."""
-    if os.path.isfile(dotenv_path):
-        with open(dotenv_path, encoding=encoding) as file:
-            for line in file:
-                key, value = line.strip().split("=", 1)
-                os.environ[key] = value
+    path = dotenv_path or REPO_ENV_PATH
+    if path.exists():
+        load_dotenv(path, override=False)
         return True
     return False
 
