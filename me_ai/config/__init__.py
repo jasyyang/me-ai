@@ -2,9 +2,7 @@ import os
 from collections.abc import Callable
 from functools import lru_cache
 
-from click import Path
 from dotenv import load_dotenv
-from dotenv.main import StrPath
 
 from me_ai.config.base import ApplicationEnvType, ApplicationSettings
 from me_ai.config.development import DevelopmentApplicationSettings

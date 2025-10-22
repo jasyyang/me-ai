@@ -16,5 +16,5 @@ jobs:
         run: docker build --target development -t me-ai:ci .
       - name: Smoke test dev image
         run: |
-          docker run --rm me-ai:ci python -c "import me_ai"
-          docker run --rm me-ai:ci "import uvicorn"
+          docker run --rm me-ai:dev python -c "import me_ai"
+          docker run --rm me-ai:dev python -c "import uvicorn"
