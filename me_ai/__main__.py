@@ -2,7 +2,6 @@ import logging
 
 import uvicorn
 
-from me_ai.api.app import fastapi_app
 from me_ai.config import get_application_settings
 from me_ai.config.base import ApplicationEnvType
 
@@ -14,11 +13,11 @@ def main() -> None:
     settings = get_application_settings()
 
     # Enable reload for development
-    should_reload = settings.app_env == ApplicationEnvType.DEV
+    should_reload = settings.app_env == ApplicationEnvType.DEV.value
 
     logger.info(f"Starting me-ai application in {settings.app_env} environment")
     uvicorn.run(
-        fastapi_app,
+        "me_ai.api.app:create_application",
         host=settings.api_host,
         port=settings.api_port,
         reload=should_reload,

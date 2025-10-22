@@ -28,6 +28,7 @@ select = [
 ]
 
 ignore = [
+  "S104",
   "S603",  # flake8-bandit
   "S607",  # flake8-bandit
   "COM812",
