@@ -1,0 +1,22 @@
+services:
+  api:
+    image: me-ai-api
+    container_name: me-ai-api
+    ports:
+      - "${PORT:-8000}:8000"
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    volumes:
+      - type: bind
+        source: ./me_ai
+        target: /app/me_ai
+    environment:
+      APP_ENV: dev
+    networks:
+      - me-ai
+
+networks:
+  me-ai:
+

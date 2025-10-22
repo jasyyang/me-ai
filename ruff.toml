@@ -1,0 +1,47 @@
+line-length = 120
+fix = true
+
+[lint]
+select = [
+  "YTT",  # flake8-2020
+  "ASYNC",  # flake8-async
+  "S",  # flake8-bandit
+  "B",  # flake8-bugbear
+  "A",  # flake8-builtins
+  "COM",  # flake8-commas
+  "C4",  # flake8-comprehensions
+  "T10",  # flake8-debugger
+  "FA",  # flake8-future-annotations
+  "INT",  # flake8-gettext
+  "ICN",  # flake8-import-conventions
+  "LOG",  # flake8-logging
+  "SIM",  # flake8-simplify
+  "I",  # isort
+  "N",  # pep8-naming
+  "E",  # pycodestyle Error
+  "W",  # pycodestyle Warning
+  "F",  # pyflakes
+  "PGH",  # pygrep-hooks
+  "UP",  # pyupgrade
+  "RUF",  # ruff
+  "TRY",  # tryceratops
+]
+
+ignore = [
+  "S603",  # flake8-bandit
+  "S607",  # flake8-bandit
+  "COM812",
+  "COM819",
+  "TRY003", # tryceratops
+]
+
+[format]
+preview = true
+
+[lint.isort]
+combine-as-imports = true
+
+[lint.per-file-ignores]
+"*/test/*" = [
+  "S101",  # flake8-bandit
+]

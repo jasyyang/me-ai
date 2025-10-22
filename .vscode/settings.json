@@ -1,0 +1,48 @@
+{
+  // Use Poetry virtual env automatically
+  "python.defaultInterpreterPath": ".venv/bin/python",
+
+  // Format on save + organize imports
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll.ruff": "explicit"
+  },
+
+  // Use Ruff as default formatter
+  "editor.defaultFormatter": "charliermarsh.ruff",
+  "ruff.organizeImports": true,
+
+  // Use Ruff for both linting *and* formatting
+  "ruff.enable": true,
+
+  // Ensure Pylance respects Ruff errors
+  "python.analysis.diagnosticMode": "workspace",
+  "python.analysis.typeCheckingMode": "basic",
+
+  // Enable mypy (optional, but recommended if strict typing later)
+  "mypy-type-checker.importStrategy": "fromEnvironment",
+  "mypy-type-checker.args": [
+    "--strict"
+  ],
+
+  // Test discovery
+  "python.testing.pytestEnabled": true,
+  "python.testing.pytestArgs": [
+    "tests"
+  ],
+
+  // Auto-detect virtualenv for terminal
+  "python.terminal.activateEnvironment": true,
+
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/venv": true,
+    "**/.venv": true,
+    "**/.pytest_cache": true
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  }
+}
