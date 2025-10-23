@@ -62,4 +62,4 @@ jobs:
       - name: Type Checking
         run: poetry run mypy me_ai
       - name: Pytest
-        run: poetry run pytest -q --cov=me_ai --cov-report=term-missing
+        run: poetry run pytest -q
