@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Build dev target
-        run: docker build --target development -t me-ai:ci .
+        run: docker build --target development -t me-ai:dev .
       - name: Smoke test dev image
         run: |
           docker run --rm me-ai:dev python -c "import me_ai"

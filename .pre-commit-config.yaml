@@ -1,0 +1,61 @@
+# .pre-commit-config.yaml
+
+default_install_hook_types: [pre-commit, pre-push]
+default_stages: [pre-commit]
+
+# Avoid running on virtualenvs, build artifacts, or vendored stuff
+exclude: |
+  (?x)(
+    ^\.venv/|
+    ^venv/|
+    ^env/|
+    ^.*/__pycache__/|
+    ^build/|
+    ^dist/|
+    ^node_modules/|
+    ^.*/migrations/|
+    ^docs/_build/|
+    ^\.vscode/
+  )
+
+repos:
+  # ---------- Generic sanity checks ----------
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-toml
+      - id: pretty-format-json
+        args: ["--autofix", "--indent=2"]
+      - id: check-json
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-merge-conflict
+      - id: mixed-line-ending
+      - id: check-added-large-files
+        args: ["--maxkb=500"]
+
+  # ---------- Ruff (lint + import order autofix) ----------
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.1
+    hooks:
+      - id: ruff
+        args:
+          - --fix
+          - --select=I
+        additional_dependencies: []
+      - id: ruff-format
+
+
+
+  # ---------- MyPy (type checking) on pre-push ----------
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.18.2
+    hooks:
+      - id: mypy
+        stages: [pre-push]
+        args:
+          - --ignore-missing-imports
+          - --install-types
+          - --non-interactive
+        additional_dependencies: []

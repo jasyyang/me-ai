@@ -1,6 +1,7 @@
 import os
 from collections.abc import Callable
 from functools import lru_cache
+from pathlib import Path
 
 from dotenv import load_dotenv
 
@@ -35,8 +36,8 @@ def load_dotenv_file(
 ) -> bool:
     """Load a .env file into the environment variables, returning boolean indicating success."""
     path = dotenv_path or REPO_ENV_PATH
-    if path.exists():
-        load_dotenv(path, override=False)
+    if env_path := Path(path).expanduser().resolve():
+        load_dotenv(env_path, override=False)
         return True
     return False
 

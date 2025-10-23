@@ -40,7 +40,10 @@
     "**/*.pyc": true,
     "**/venv": true,
     "**/.venv": true,
-    "**/.pytest_cache": true
+    "**/.pytest_cache": true,
+    "**/.pre-commit-cache": true,
+    "**/.mypy_cache": true,
+    "**/.ruff_cache": true,
   },
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff"

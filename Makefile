@@ -23,9 +23,9 @@ test:
 	$(POETRY) run pytest -q
 
 precommit:
-	$(POETRY) run pre-commit run --all-files
+	PRE_COMMIT_HOME=.pre-commit-cache $(POETRY) run pre-commit run --all-files
 
-ci-local: check test
+ci-local: install lock lint check test
 
 .PHONY: compose-up compose-down compose-logs compose-ps
 
